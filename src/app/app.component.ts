@@ -11,5 +11,5 @@ import { RouterOutlet } from '@angular/router';
 export class AppComponent {
   title = 'Apekshya-khanal-Learning-Angular';
   name ='Apekshya Khanal' ;
-  course ='computer programming'
+  height ='153 cm'
 }
