@@ -1,3 +1,15 @@
-<h1>{{title}}</h1>
-<h2>{{name}}</h2>
-<h2>{{heightt}}</h2>
+<!DOCTYPE html >
+<html>
+<head></head>
+<body>
+<div *ngFor ="let car of carList">
+  <div>
+    <h2>{{car.make}}{{car.model}}</h2>
+    <p>Year: {{car.year}}</p>
+    <p>Color:{{car.color}}</p>
+    <p *ngIf="car.isFav">Favourite</p>
+  </div>
+
+</div>
+</body>
+</html>

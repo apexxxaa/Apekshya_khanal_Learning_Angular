@@ -2,6 +2,7 @@ export interface Cars {
   make: string,
   model:string,
   year: number,
-  color?: string
+  color: string,
+  isFav?:boolean;
 
 }
