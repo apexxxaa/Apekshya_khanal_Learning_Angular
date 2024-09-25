@@ -8,10 +8,10 @@ import {Component, Input} from '@angular/core';
   styleUrl: './car-list-item.component.css'
 })
 export class CarListItemComponent {
-  @Input() car: {
+  @Input() car?: {
     make: string;
     model: string;
     year: number;
     color: string;
-  } | undefined
+  } ;
 }
