@@ -1,5 +1,4 @@
 <p>car-list works!</p>
-<app-car-list-item></app-car-list-item>
-<app-car-list-item></app-car-list-item>
-<app-car-list-item></app-car-list-item>
-<app-car-list-item></app-car-list-item>
+<div>
+<app-car-list-item *ngFor="let car of cars" [car]="car"></app-car-list-item>
+</div>
