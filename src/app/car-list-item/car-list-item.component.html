@@ -1,7 +1,6 @@
-<p>car-list-item works!</p>
-<div class="carList-item" style="border: 2px solid lightblue; padding: 10px; margin: 10px">
-  <h1>{{car?.make}}</h1>
-  <h2>{{car?.model}}</h2>
-  <p>Year:{{car?.year}}</p>
-  <p>Color:{{car?.color}}</p>
+<div *ngIf="car" class="carList-item" style="border: 2px solid lightblue; padding: 10px; margin: 10px">
+  <h1>{{car.make}}</h1>
+  <h2>{{car.model}}</h2>
+  <p>Year:{{car.year}}</p>
+  <p>Color:{{car.color}}</p>
 </div>
