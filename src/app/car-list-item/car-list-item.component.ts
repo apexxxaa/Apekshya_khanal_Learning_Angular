@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {NgIf} from "@angular/common";
-import {Cars} from "../models/cars";
+import {Cars} from "../Shared/models/cars";
 
 @Component({
   selector: 'app-car-list-item',
