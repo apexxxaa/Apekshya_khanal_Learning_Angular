@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {CarListItemComponent} from "../car-list-item/car-list-item.component";
 import {NgForOf} from "@angular/common";
+import {CarService} from "../services/car.service";
+import {Cars} from "../Shared/models/cars";
 
 @Component({
   selector: 'app-car-list',
@@ -13,5 +15,7 @@ import {NgForOf} from "@angular/common";
   styleUrl: './car-list.component.css'
 })
 export class CarListComponent {
-
+  carList : Cars[] = []
+  constructor(private carServices : CarService) {
+  }
 }

@@ -1,8 +1,8 @@
 import {Cars} from "./models/cars";
 
 
-export class CarListComponent {
-  cars = [
+export const carList :Cars[] =
+   [
     {
       make: 'Tesla',
       model: 'Model S',
@@ -28,5 +28,5 @@ export class CarListComponent {
       year: 2019,
       color: 'black'
     }
-  ];
-}
+  ]
+
