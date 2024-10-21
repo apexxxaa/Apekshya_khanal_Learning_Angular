@@ -1,0 +1,9 @@
+.carList-item{
+  border: 2px ;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: lightgray;
+}
+
+

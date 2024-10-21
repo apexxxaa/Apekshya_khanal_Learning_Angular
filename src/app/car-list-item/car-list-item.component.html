@@ -1,6 +1,8 @@
-<div *ngIf="car" class="carList-item" style="border: 2px solid lightblue; padding: 10px; margin: 10px">
+<div *ngIf="car" class="carList-item" >
   <h1>{{car.make}}</h1>
   <h2>{{car.model}}</h2>
   <p>Year:{{car.year}}</p>
   <p>Color:{{car.color}}</p>
+  <p><strong>Admin:</strong> {{ car.isFav ? 'Yes' : 'No' }}</p>
+
 </div>

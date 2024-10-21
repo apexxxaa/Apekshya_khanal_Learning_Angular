@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CarListItemComponent} from "../car-list-item/car-list-item.component";
 import {NgForOf} from "@angular/common";
 import {CarService} from "../services/car.service";
@@ -14,7 +14,9 @@ import {Cars} from "../Shared/models/cars";
   templateUrl: './car-list.component.html',
   styleUrl: './car-list.component.css'
 })
-export class CarListComponent {
+export class CarListComponent implements OnInit{
+
+  displayColumns:string[] =['id','make','model','year','color','isFav'];
   carList : Cars[] = []
   constructor(private carServices : CarService) {
   }
@@ -25,5 +27,10 @@ export class CarListComponent {
       error:err => console.error("Error fetching books", err),
       complete:()=> console.log("Student fetch data complete!")
     })
+  }
+
+  selectedCar?: Cars;
+  selectCar(car: Cars):void {
+    this.selectedCar = car;
   }
 }

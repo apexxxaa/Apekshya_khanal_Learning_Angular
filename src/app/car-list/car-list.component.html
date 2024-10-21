@@ -1,4 +1,26 @@
-<div *ngFor="let car of cars">
-  <app-car-list-item [car] ="car"></app-car-list-item>
+<div class="container">
+  <h2>Car List</h2>
+  <table class ="tr_box">
+    <thead>
+    <tr >
+      <th>Id</th>
+      <th>Make</th>
+      <th>Model</th>
+      <th>Year</th>
+      <th>Color</th>
+      <th>isFav?</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let car of carList" (click)="selectCar(car)">
+      <td>{{ car.id }}</td>
+      <td>{{ car.make }}</td>
+      <td>{{ car.model }}</td>
+      <td>{{ car.year }}</td>
+      <td>{{car.color}}</td>
+      <td>{{ car.isFav? 'Yes' : 'No' }}</td>
+    </tr>
+    </tbody>
+  </table>
+  <app-car-list-item [car]="selectedCar"></app-car-list-item>
 </div>
-
