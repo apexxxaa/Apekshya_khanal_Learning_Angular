@@ -2,9 +2,12 @@
 <html>
 <head><title> Assignment 2</title></head>
 <body>
+<nav>
+  <a routerLink="/cars" routerLinkActive="active">Car List</a>
+  <a routerLink="/modify-car" routerLinkActive>Modify Cars</a>
+</nav>
 
-<app-car-list> </app-car-list>
-
+<router-outlet></router-outlet>
 
 </body>
 </html>
