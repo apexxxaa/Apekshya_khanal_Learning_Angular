@@ -4,5 +4,6 @@ export interface Cars {
   year: number,
   color: string,
   isFav?:boolean;
+  imageUrl? : string
 
 }
