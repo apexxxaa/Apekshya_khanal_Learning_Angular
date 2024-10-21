@@ -18,4 +18,12 @@ export class CarListComponent {
   carList : Cars[] = []
   constructor(private carServices : CarService) {
   }
+
+  ngOnInit(){
+    this.carServices.getCars().subscribe({
+      next: (data: Cars[])=> this.carList = data,
+      error:err => console.error("Error fetching books", err),
+      complete:()=> console.log("Student fetch data complete!")
+    })
+  }
 }
