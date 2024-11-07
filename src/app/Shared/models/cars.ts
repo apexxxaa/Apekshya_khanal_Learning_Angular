@@ -1,9 +1,10 @@
 export interface Cars {
-  id: number,
+  id : number,
   make: string,
   model:string,
   year: number,
   color: string,
   isFav?:boolean;
+  imageUrl? : string
 
 }

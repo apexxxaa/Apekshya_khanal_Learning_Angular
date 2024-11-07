@@ -1,4 +1,32 @@
-<div *ngFor="let car of cars">
-  <app-car-list-item [car] ="car"></app-car-list-item>
-</div>
+<div class="container">
+  <h2>Student List</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>make</th>
+      <th>model</th>
+      <th>year</th>
+      <th>color</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let car of cars" [routerLink]="['/cars', car.id ]">
+      <td>{{ car.id }}</td>
+      <td>{{ car.make}}</td>
+      <td>{{ car.model }}</td>
+      <td>{{ car.year }}</td>
+      <td>{{ car.isFav ? 'Yes' : 'No' }}</td>
+      <button type="button" (click)="onEdit()">Edit</button>
+      <button type="button" (click)="onDelete()">Delete</button>
 
+
+    </tr>
+    </tbody>
+
+
+
+
+  </table>
+
+</div>

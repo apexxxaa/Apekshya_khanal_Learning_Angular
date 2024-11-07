@@ -28,7 +28,7 @@ export class CarService {
     return of(this.cars);
   }
 
-  deleteStudent(carId: number): Observable<Cars[]> {
+  deleteCar(carId: number): Observable<Cars[]> {
     this.cars = this.cars.filter(car => car.id !== carId);
     return of(this.cars);
   }
@@ -36,6 +36,10 @@ export class CarService {
   getCarsById(carsId:number): Observable<Cars |undefined>{
     const car =this.cars.find(car =>car.id === carsId);
     return of(car);
+  }
+
+  generateNewId(): number {
+    return this.cars.length > 0 ? Math.max(...this.cars.map(car => car.id)) + 1 : 1;
   }
 
 

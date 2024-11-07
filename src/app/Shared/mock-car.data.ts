@@ -8,14 +8,18 @@ export const carList :Cars[] =
       make: 'Tesla',
       model: 'Model S',
       year: 2022,
-      color: 'Red'
+      color: 'Red',
+      imageUrl:'/Assets/car.jpg'
+
     },
     {
       id: 2,
       make: 'Ford',
       model: 'Mustang',
       year: 2021,
-      color: 'blue'
+      color: 'blue',
+      imageUrl:'/Assets/car1.jpg'
+
 
     },
     {
@@ -23,14 +27,18 @@ export const carList :Cars[] =
       make: 'Chevrolet',
       model: 'camaro',
       year: 2020,
-      color: 'Yellow'
+      color: 'Yellow',
+      imageUrl:'/Assets/car2.jpg'
+
     },
     {
       id:4,
       make: 'Honda',
       model: 'civic',
       year: 2019,
-      color: 'black'
+      color: 'black',
+      imageUrl:'/Assets/car3.jpg'
+
     }
   ]
 

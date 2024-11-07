@@ -1,8 +1,13 @@
-<div *ngIf="car" class="carList-item" style="border: 2px solid lightblue; padding: 10px; margin: 10px">
+<div *ngIf="car" class="carList-item" >
+
+  <h1>{{car.id}}</h1>
   <h1>{{car.make}}</h1>
   <h2>{{car.model}}</h2>
   <p>Year:{{car.year}}</p>
   <p>Color:{{car.color}}</p>
-  <img [src]="car.imageUrl" alt="car Image" width="200px">
 
+  <img [src]="car.imageUrl" alt="car Image" width="200px">
+  <button (click)="goBackward()" [disabled]="currentIndex === 0">Previous</button>
+  <button (click)="goForward()" [disabled]="currentIndex === carList.length - 1">Next</button>
+  <button (click)="goBack()">Back to car List</button>
 </div>
