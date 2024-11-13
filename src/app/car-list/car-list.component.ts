@@ -5,6 +5,7 @@ import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {CarService} from "../services/car.service";
 import {Cars} from "../Shared/models/cars";
 import {carList} from "../Shared/mock-car.data";
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-car-list',
@@ -19,15 +20,17 @@ import {carList} from "../Shared/mock-car.data";
 })
 
 export class CarListComponent {
+
   constructor(
     private route: ActivatedRoute,
-    private router : Router,
+    private router: Router,
     private carService: CarService
+  ) {
+  }
 
-  ) {}
   cars = [
     {
-      imageUrl:"/Assets/car1.jpg",
+      imageUrl: "/Assets/car1.jpg",
       id: 1,
       make: 'Tesla',
       model: 'Model S',
@@ -37,8 +40,8 @@ export class CarListComponent {
 
     },
     {
-      id:2,
-      imageUrl:"/Assets/car2.jpg",
+      id: 2,
+      imageUrl: "/Assets/car2.jpg",
       make: 'Ford',
       model: 'Mustang',
       year: 2021,
@@ -47,8 +50,8 @@ export class CarListComponent {
 
     },
     {
-      id:3,
-      imageUrl:"/Assets/car3.jpg",
+      id: 3,
+      imageUrl: "/Assets/car3.jpg",
       make: 'Chevrolet',
       model: 'camaro',
       year: 2020,
@@ -56,8 +59,8 @@ export class CarListComponent {
       isFav: 'No'
     },
     {
-      id:4,
-      imageUrl:"/Assets/car.jpg",
+      id: 4,
+      imageUrl: "/Assets/car.jpg",
       make: 'Honda',
       model: 'civic',
       year: 2019,
@@ -71,20 +74,10 @@ export class CarListComponent {
     this.router.navigate(['/modify-car'])
 
   }
-
-  selectedCar?: Cars;
-  selectCar(car: Cars): void {
-    this.selectedCar = car;
+  delete(id: number) : void{
+    this.cars =this.cars.filter(car=>car.id !== id);
   }
-  onDelete(): void {
-    if (this.selectedCar && this.selectedCar.id) {
-      // Call the service to delete the car by its ID
-      this.carService.deleteCar(this.selectedCar.id).subscribe(() => {
-        // Once the deletion is complete, navigate back to the car list
-        this.router.navigate(['/cars']);
-      });
-    }
-  }
-
-  protected readonly carList = carList;
 }
+
+
+

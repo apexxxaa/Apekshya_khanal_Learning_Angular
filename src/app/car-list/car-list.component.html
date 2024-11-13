@@ -11,7 +11,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let car of cars" (click)="selectCar" [routerLink]="['/cars', car.id ]" >
+    <tr *ngFor="let car of cars"  [routerLink]="['/cars', car.id ]" >
       <td>{{ car.id }}</td>
       <td>{{ car.make}}</td>
       <td>{{ car.model }}</td>
@@ -19,7 +19,7 @@
       <td>{{ car.isFav ? 'Yes' : 'No' }}</td>
       <td>
       <button type="button" (click)="onEdit()">Edit</button>
-      <button type="button" (click)="onDelete()">Delete</button>
+      <button type="button" (click)="delete(car.id)">Delete</button>
 
       </td>
     </tr>

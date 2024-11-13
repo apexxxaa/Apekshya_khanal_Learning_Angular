@@ -63,7 +63,7 @@ export class ModifyCarComponent implements OnInit {
     const id = this.carForm.get('id')?.value;
     if (id) {
       this.carService.deleteCar(id);
-      this.router.navigate(['/car']);
+      this.router.navigate(['/cars']);
     }
   }
 
