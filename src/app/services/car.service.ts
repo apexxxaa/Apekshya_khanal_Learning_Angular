@@ -1,47 +1,51 @@
 import { Injectable } from '@angular/core';
 import {Cars} from "../Shared/models/cars";
-import {Observable, of} from "rxjs";
 import {carList} from "../Shared/mock-car.data";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {catchError, Observable, throwError} from "rxjs";
+//import our mock data
 
+
+//Notice the new Decorator
 @Injectable({
   providedIn: 'root'
 })
 export class CarService {
-
-  private cars : Cars[] = carList;
-
-  constructor() { }
-  //returns all cars
-  getCars() :Observable<Cars[]>{
-    return of(carList);
-  }
-  addCars(newCar:Cars) : Observable<Cars[]>{
-    this.cars.push(newCar)
-    return of(this.cars);
+  private apiUrl = 'api/cars'; //url to web api
+  private cars: Cars[] = carList;//Local copy of student data for CRUD Operations
+  constructor(private http: HttpClient) { }//DI http
+  //CRUD operations using HTTP Requests
+  //All operations we need are:
+  // Get, post, put, delete
+  getCar(): Observable<Cars[]> {
+    return this.http.get<Cars[]>(this.apiUrl).pipe(catchError(this.handleError));
   }
 
-  updateCars(updateCars: Cars): Observable<Cars[]>{
-    const index = this.cars.findIndex(car => car.id ===updateCars.id);
-    if(index !== -1){
-      this.cars[index] = updateCars;
-    }
-    return of(this.cars);
+  getCarById(id: number): Observable<Cars> {
+    return this.http.get<Cars>(`${this.apiUrl}/${id}`).pipe(catchError(this.handleError)); //return a single student
   }
 
-  deleteCar(carId: number): Observable<Cars[]> {
-    this.cars = this.cars.filter(car => car.id !== carId);
-    return of(this.cars);
+  addCar(car: Cars): Observable<Cars> {
+    car.id = this.generateNewId();
+    return this.http.post<Cars>(this.apiUrl, car).pipe(catchError(this.handleError));
   }
 
-  getCarsById(carsId:number): Observable<Cars |undefined>{
-    const car =this.cars.find(car =>car.id === carsId);
-    return of(car);
+  updateCar(car: Cars): Observable<Cars | undefined> {
+    const url = `${this.apiUrl}/${car.id}`;
+    return this.http.put<Cars>(url, car).pipe(catchError(this.handleError));
   }
 
+  deleteCar(id: number): Observable<{}> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete(url).pipe(catchError(this.handleError));
+  }
+  // New method to generate a new unique ID
   generateNewId(): number {
     return this.cars.length > 0 ? Math.max(...this.cars.map(car => car.id)) + 1 : 1;
   }
 
-
-
+  private handleError(error: HttpErrorResponse) {
+    console.error('API error:', error);
+    return throwError(() => new Error('Server error, please try again.'));
+  }
 }
