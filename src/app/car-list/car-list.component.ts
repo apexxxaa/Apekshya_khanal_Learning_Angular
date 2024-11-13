@@ -4,6 +4,7 @@ import {NgForOf} from "@angular/common";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {CarService} from "../services/car.service";
 import {Cars} from "../Shared/models/cars";
+import {carList} from "../Shared/mock-car.data";
 
 @Component({
   selector: 'app-car-list',
@@ -75,11 +76,15 @@ export class CarListComponent {
   selectCar(car: Cars): void {
     this.selectedCar = car;
   }
-  onDelete() {
-    if(this.selectedCar){
-      this.carService.deleteCar(this.selectedCar.id);
-      this.cars = this.cars.filter(car => car.id !== this.selectedCar?.id)
-      this.router.navigate(['/cars'])
+  onDelete(): void {
+    if (this.selectedCar && this.selectedCar.id) {
+      // Call the service to delete the car by its ID
+      this.carService.deleteCar(this.selectedCar.id).subscribe(() => {
+        // Once the deletion is complete, navigate back to the car list
+        this.router.navigate(['/cars']);
+      });
     }
   }
+
+  protected readonly carList = carList;
 }
