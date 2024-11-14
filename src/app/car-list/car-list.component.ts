@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CarListItemComponent} from "../car-list-item/car-list-item.component";
 import {NgForOf} from "@angular/common";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
@@ -19,16 +19,19 @@ import {FormGroup} from "@angular/forms";
   styleUrl: './car-list.component.css'
 })
 
-export class CarListComponent {
+export class CarListComponent implements OnInit{
+  error: string | null = null //Var to hold an error message
 
   constructor(
-    private route: ActivatedRoute,
+
     private router: Router,
-    private carService: CarService
-  ) {
+    private carService: CarService,
+
+){
+
   }
 
-  cars = [
+  cars: Cars[] = [
     {
       imageUrl: "/Assets/car1.jpg",
       id: 1,
@@ -36,7 +39,7 @@ export class CarListComponent {
       model: 'Model S',
       year: 2022,
       color: 'Red',
-      isFav: 'No'
+      isFav: true
 
     },
     {
@@ -46,7 +49,7 @@ export class CarListComponent {
       model: 'Mustang',
       year: 2021,
       color: 'blue',
-      isFav: 'No'
+      isFav: false
 
     },
     {
@@ -56,7 +59,7 @@ export class CarListComponent {
       model: 'camaro',
       year: 2020,
       color: 'Yellow',
-      isFav: 'No'
+      isFav: true
     },
     {
       id: 4,
@@ -65,9 +68,10 @@ export class CarListComponent {
       model: 'civic',
       year: 2019,
       color: 'black',
-      isFav: 'yes'
+      isFav: false
     }
   ];
+
 
 
   onEdit() {
@@ -77,6 +81,27 @@ export class CarListComponent {
   delete(id: number) : void{
     this.cars =this.cars.filter(car=>car.id !== id);
   }
+
+  ngOnInit(): void {
+    this.carService.getCar().subscribe({
+      next: (data: Cars[]) => {
+        this.cars = data;
+        this.error = null; // Clear any previous errors
+      },
+      error: err => {
+        this.error = 'Error fetching cars'; // Set an error message
+        console.error("Error fetching cars", err);
+      },
+      complete: () => console.log("Cars data fetch complete!")
+    });
+  }
+  selectedCar?: Cars;
+  selectCar(car: Cars): void {
+    this.selectedCar = car;
+  }
+
+
+
 }
 
 

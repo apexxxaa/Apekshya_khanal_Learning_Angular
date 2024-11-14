@@ -18,6 +18,8 @@ export class CarListItemComponent implements OnInit{
   car : Cars | undefined;
   carList: Cars[] = [];
   currentIndex: number =0;
+  error: string|null = null;//to store any errors
+
 
   constructor(
     private route: ActivatedRoute,
@@ -25,20 +27,28 @@ export class CarListItemComponent implements OnInit{
     private router: Router
   ) {}
   ngOnInit(): void {
-    this.carService.getCars().subscribe(car => {
-      this.carList= car;
+    this.carService.getCar().subscribe({
+      next: (car: Cars[]) => {
+        this.carList = car;
+        this.error = null; // Clear any previous errors
 
-      // Subscribe to paramMap changes to actually see the page changing
-      //If we dont do this, the URL will change but the view will not
-      this.route.paramMap.subscribe(params => {
-        const id = Number(params.get('id'));
-        if (id) {
-          this.currentIndex = this.carList.findIndex(car => car.id === id);
-          this.car = this.carList[this.currentIndex];
-        }
-      });
+        // Subscribe to paramMap changes to update the page view
+        this.route.paramMap.subscribe(params => {
+          const id = Number(params.get('id'));
+          if (id) {
+            this.currentIndex = this.carList.findIndex(car => car.id === id);
+            this.car = this.carList[this.currentIndex];
+          }
+        });
+      },
+      error: (err) => {
+        this.error = 'Error fetching cars';
+        console.error('Error fetching cars:', err);
+      }
     });
   }
+
+
 
 //function to go back to student-list view
   goBack(): void {
@@ -59,5 +69,7 @@ export class CarListItemComponent implements OnInit{
       this.router.navigate(['/cars', this.carList[this.currentIndex].id]);
     }
   }
+
+
 
 }
