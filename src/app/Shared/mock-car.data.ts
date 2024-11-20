@@ -22,7 +22,6 @@ export const carList :Cars[] =
     model: 'Mustang',
     year: 2021,
     engineType: 'L-4 Cylinder',
-
     color: 'blue',
     isFav: false
 
