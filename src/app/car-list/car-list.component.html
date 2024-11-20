@@ -11,11 +11,11 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let car of cars"  [routerLink]="['/cars', car.id ]" >
+    <tr *ngFor="let car of carList" [routerLink]="['/cars', car.id ]" >
       <td>{{ car.id }}</td>
-      <td>{{ car.make}}</td>
-      <td>{{ car.model }}</td>
-      <td>{{ car.year }}</td>
+      <td>{{ car.make | uppercase}}</td>
+      <td>{{ car.model | titlecase}}</td>
+      <td>{{ car.year | date: 'longDate' }}</td>
       <td>{{ car.isFav ? 'Yes' : 'No' }}</td>
       <td>
       <button type="button" (click)="onEdit()">Edit</button>

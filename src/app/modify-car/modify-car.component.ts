@@ -34,7 +34,7 @@ export class ModifyCarComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.carService.getCarsById(+id).subscribe(car => {
+      this.carService.getCarById(+id).subscribe(car => {
         if(car) {
           this.car = car;
 
@@ -49,12 +49,12 @@ export class ModifyCarComponent implements OnInit {
 
     // Check if we're updating an existing car
     if (car.id) {
-      this.carService.updateCars(car);
+      this.carService.updateCar(car);
     } else {
       // For adding a new car, generate a new ID
       const newId = this.carService.generateNewId(); // This method will create a new ID
       car.id = newId;
-      this.carService.addCars(car);
+      this.carService.addCar(car);
     }
     }
 

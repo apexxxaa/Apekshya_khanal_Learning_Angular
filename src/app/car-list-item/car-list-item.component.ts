@@ -1,5 +1,5 @@
 import {Component, input, Input, OnInit} from '@angular/core';
-import {NgIf} from "@angular/common";
+import {DatePipe, NgIf} from "@angular/common";
 
 import {ActivatedRoute, Router} from "@angular/router";
 import {CarService} from "../services/car.service";
@@ -9,7 +9,8 @@ import {Cars} from "../Shared/models/cars";
   selector: 'app-car-list-item',
   standalone: true,
   imports: [
-    NgIf
+    NgIf,
+    DatePipe
   ],
   templateUrl: './car-list-item.component.html',
   styleUrl: './car-list-item.component.css'
