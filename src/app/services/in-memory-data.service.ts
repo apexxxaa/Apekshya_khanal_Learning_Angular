@@ -20,6 +20,7 @@ export class InMemoryDataService implements InMemoryDbService {
         make: 'Tesla',
         model: 'Model S',
         year: 2022,
+        engineType: 'Electric',
         color: 'Red',
         isFav: true
 
@@ -30,6 +31,8 @@ export class InMemoryDataService implements InMemoryDbService {
         make: 'Ford',
         model: 'Mustang',
         year: 2021,
+        engineType: 'L-4 Cylinder',
+
         color: 'blue',
         isFav: false
 
@@ -40,6 +43,8 @@ export class InMemoryDataService implements InMemoryDbService {
         make: 'Chevrolet',
         model: 'camaro',
         year: 2020,
+        engineType: '6.2 L V8',
+
         color: 'Yellow',
         isFav: true
       },
@@ -49,6 +54,8 @@ export class InMemoryDataService implements InMemoryDbService {
         make: 'Honda',
         model: 'civic',
         year: 2019,
+        engineType: '2.0 L 4-cylinder',
+
         color: 'black',
         isFav: true
       }

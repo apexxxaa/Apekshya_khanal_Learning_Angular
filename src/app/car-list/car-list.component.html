@@ -1,22 +1,22 @@
 <div class="container">
-  <h2>Student List</h2>
+  <h2>Car List</h2>
   <table>
     <thead>
     <tr>
       <th>ID</th>
-      <th>make</th>
-      <th>model</th>
+      <th>Make&Model</th>
       <th>year</th>
+      <th>Engine Type</th>
       <th>color</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let car of carList" [routerLink]="['/cars', car.id ]" >
       <td>{{ car.id }}</td>
-      <td>{{ car.make | uppercase}}</td>
-      <td>{{ car.model | titlecase}}</td>
+      <td>{{ car |makeModel | titlecase}}</td>
       <td>{{ car.year | date: 'longDate' }}</td>
-      <td>{{ car.isFav ? 'Yes' : 'No' }}</td>
+      <td>{{car.engineType | lowercase}}</td>
+      <td>{{ car.isFav ? 'Yes' : 'No'  }}</td>
       <td>
       <button type="button" (click)="onEdit()">Edit</button>
       <button type="button" (click)="delete(car.id)">Delete</button>

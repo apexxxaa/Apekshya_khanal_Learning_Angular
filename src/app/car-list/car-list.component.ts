@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {CarListItemComponent} from "../car-list-item/car-list-item.component";
-import {DatePipe, NgForOf, NgIf, TitleCasePipe, UpperCasePipe} from "@angular/common";
+import {DatePipe, LowerCasePipe, NgForOf, NgIf, TitleCasePipe, UpperCasePipe} from "@angular/common";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {CarService} from "../services/car.service";
 import {Cars} from "../Shared/models/cars";
 import {carList} from "../Shared/mock-car.data";
 import {FormGroup} from "@angular/forms";
+import {MakeModelPipe} from "../pipes/make-model.pipe";
 
 @Component({
   selector: 'app-car-list',
@@ -17,7 +18,9 @@ import {FormGroup} from "@angular/forms";
     DatePipe,
     UpperCasePipe,
     NgIf,
-    TitleCasePipe
+    TitleCasePipe,
+    MakeModelPipe,
+    LowerCasePipe
   ],
   templateUrl: './car-list.component.html',
   styleUrl: './car-list.component.css'
